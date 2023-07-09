@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 
 public class Studentcontroller {
@@ -53,6 +55,14 @@ public class Studentcontroller {
     }
 
     //find  the  student whose age is >25
+
+    @GetMapping("/studentAge")
+    public ResponseEntity studentAge(@RequestParam("age") int age)
+    {
+         List student = studentService.studentAge(age);
+
+         return new ResponseEntity<>(student, HttpStatus.OK);
+    }
 
 
 

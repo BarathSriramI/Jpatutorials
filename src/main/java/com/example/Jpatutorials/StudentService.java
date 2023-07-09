@@ -3,6 +3,8 @@ package com.example.Jpatutorials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -57,5 +59,19 @@ public class StudentService {
     public String deleteAll() {
         studentRepository.deleteAll();
         return "Deleted all rollNo";
+    }
+
+    public List studentAge(int age) {
+
+        List<Student> list = new ArrayList<>();
+
+        List<Student> students = studentRepository.findAll();
+
+        for(int i=0;i<students.size();i++)
+        {
+            Student student = students.get(i);
+            if(student.getAge()> age) list.add(student);
+        }
+            return list; 
     }
 }
